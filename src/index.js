@@ -38,7 +38,26 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let dd = expr.match(/.{10}/g);
+    let answer = "";
+    for (const iter of dd) {
+        if(iter === "**********") {
+            answer += " ";
+            continue;
+        }
+
+        let answ = "";
+        let ff = String(parseInt(iter, 10));
+    for (let i = 0; i < ff.length; i++) {
+        if(ff[i] + ff[++i] === "10") answ += ".";
+        else answ += "-";
+    }
+
+        answer += MORSE_TABLE[answ];
+    }
+
+
+    return answer;
 }
 
 module.exports = {
